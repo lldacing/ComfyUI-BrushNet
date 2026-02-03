@@ -940,7 +940,7 @@ def add_brushnet_patch(model, brushnet, torch_dtype, conditioning_latents,
     if model.model.model_config.custom_operations is None:
         fp8 = model.model.model_config.optimizations.get("fp8", model.model.model_config.scaled_fp8 is not None)
         operations = comfy.ops.pick_operations(model.model.model_config.unet_config.get("dtype", None), model.model.manual_cast_dtype,
-                                               fp8_optimizations=fp8, scaled_fp8=model.model.model_config.scaled_fp8)
+                                               fp8_optimizations=fp8, model_config=model.model.model_config)
     else:
         # such as gguf
         operations = model.model.model_config.custom_operations
