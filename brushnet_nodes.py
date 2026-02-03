@@ -938,7 +938,7 @@ def add_brushnet_patch(model, brushnet, torch_dtype, conditioning_latents,
     is_SDXL = isinstance(model.model.model_config, comfy.supported_models.SDXL)
 
     if model.model.model_config.custom_operations is None:
-        fp8 = model.model.model_config.optimizations.get("fp8", model.model.model_config.scaled_fp8 is not None)
+        fp8 = model.model.model_config.optimizations.get("fp8", False)
         operations = comfy.ops.pick_operations(model.model.model_config.unet_config.get("dtype", None), model.model.manual_cast_dtype,
                                                fp8_optimizations=fp8, model_config=model.model.model_config)
     else:
